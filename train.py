@@ -4,7 +4,7 @@ import joblib
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import Ridge
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
 os.makedirs("output", exist_ok=True)
@@ -25,7 +25,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Model
-model = Ridge(alpha=1.0)
+model = DecisionTreeRegressor(
+    max_depth=5,
+    random_state=42
+)
 model.fit(X_train, y_train)
 
 # Predict
